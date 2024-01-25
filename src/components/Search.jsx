@@ -23,7 +23,7 @@ function Search({ onSearch }) {
         value={searchQuery}
         onChange={handleSearchChange}
       />
-      <button className='btn rounded-tl-none rounded-bl-none bg-red-500 border-gray-500 hover:bg-red-700' onClick={handleSearch}>
+      <button className='btn rounded-tl-none rounded-bl-none rounded-br-2xl rounded-tr-2xl bg-red-500 border-gray-500 hover:bg-red-700' onClick={handleSearch}>
       <IoSearch size={20} color='white'/>
       </button>
     </div>
