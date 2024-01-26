@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import Search from '../components/Search';
 import { PokemonProvider } from '../context/PokemonContext';
+import Filter from '../components/filter';
 
 function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,7 +14,8 @@ function Dashboard() {
 
   return (
     <>
-      <Navbar />
+      <Navbar  />
+      
       <Search onSearch={handleSearch} />
       <div className='mt-10'>
       <PokemonProvider>

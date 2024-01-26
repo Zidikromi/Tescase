@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { usePokemonContext } from '../context/PokemonContext';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -27,52 +29,82 @@ const typeColorMap = {
 }
 
 const CardSave = () => {
-    const { savedPokemon } = usePokemonContext();
-    console.log({ Saved: savedPokemon });
-  
-    if (savedPokemon.length === 0) {
-      return <div>No saved Pokemon yet.</div>;
-    }
-  
-    return (
-      <div>
-        <div className='flex flex-wrap justify-center mx-20'>
-          {savedPokemon.map((content, i) => (
-            <div key={i} className="card w-72 bg-base-100 shadow-xl m-4">
-              {/* Ensure content.sprites and content.types are defined */}
-              {content.sprites && content.sprites.other && (
-                <figure>
-                  <img
-                    src={content.sprites.other['official-artwork'].front_default}
-                    className='w-44 h-44'
-                    alt={content.name}
-                  />
-                </figure>
-              )}
-              <div className="card-body">
-                <h2 className="card-title justify-center font-bold">
-                  {content.alias}
-                </h2>
-                <p className='text-gray-400 text-sm font-bold'>Height: <span className='text-black'>{content.height / 10} m</span></p>
-                <p className='text-gray-400 text-sm font-bold'>Weight: <span className='text-black'>{content.weight / 10} Kg</span></p>
-                <p className='text-gray-400 text-sm font-bold'>Types:</p>
-                <ul className='flex gap-2'>
-                  {content.types.map((type, index) => (
-                    <li
-                      className="badge font-bold text-white text-center h-5 text-xs rounded-2xl"
-                      key={index}
-                      style={{ backgroundColor: typeColorMap[type.type.name] || '#CCCCCC' }}
-                    >
-                      {type.type.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
+  const { savedPokemon, deletePokemon } = usePokemonContext();
+
+  const handleDelete = (pokemonId) => {
+    deletePokemon(pokemonId);
+    toast.success('Pokemon Deleted!', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
-  
-  export default CardSave;
+
+  if (savedPokemon.length === 0) {
+    return <div className=' text-gray-600 flex justify-center'>No saved Pokemon.</div>;
+  }
+
+  return (
+    <div>
+      <div className='flex flex-wrap justify-center mx-20'>
+        {savedPokemon.map((content, i) => (
+          <div key={i} className="card w-72 bg-base-100 shadow-xl m-4">
+            {content.sprites && content.sprites.other && (
+              <figure>
+                <img
+                  src={content.sprites.other['official-artwork'].front_default}
+                  className='w-44 h-44'
+                  alt={content.name}
+                />
+              </figure>
+            )}
+            <div className="card-body">
+              <h2 className="card-title justify-center font-bold">
+                {content.alias}
+              </h2>
+              <p className='text-gray-400 text-sm font-bold'>Height: <span className='text-black'>{content.height / 10} m</span></p>
+              <p className='text-gray-400 text-sm font-bold'>Weight: <span className='text-black'>{content.weight / 10} Kg</span></p>
+              <ul className='flex gap-2'>
+                {content.types.map((type, index) => (
+                  <li
+                    className="badge font-bold text-white text-center h-5 text-xs rounded-2xl"
+                    key={index}
+                    style={{ backgroundColor: typeColorMap[type.type.name] || '#CCCCCC' }}
+                  >
+                    {type.type.name}
+                  </li>
+                ))}
+              </ul>
+              <button
+                className='btn bg-red-500 hover:bg-red-700 text-white'
+                onClick={() => handleDelete(content.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce/>
+    </div>
+  );
+};
+
+export default CardSave;

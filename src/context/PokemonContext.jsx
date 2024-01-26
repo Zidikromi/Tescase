@@ -4,7 +4,6 @@ const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
   const [savedPokemon, setSavedPokemon] = useState(() => {
-    // Retrieve saved Pokemon from local storage on initial load
     const savedPokemonFromStorage = localStorage.getItem('savedPokemon');
     return savedPokemonFromStorage ? JSON.parse(savedPokemonFromStorage) : [];
   });
@@ -13,13 +12,18 @@ export const PokemonProvider = ({ children }) => {
     setSavedPokemon((prevSavedPokemon) => [...prevSavedPokemon, pokemon]);
   };
 
+  const deletePokemon = (pokemonId) => {
+    setSavedPokemon((prevSavedPokemon) =>
+      prevSavedPokemon.filter((pokemon) => pokemon.id !== pokemonId)
+    );
+  };
+
   useEffect(() => {
-    // Update local storage whenever savedPokemon changes
     localStorage.setItem('savedPokemon', JSON.stringify(savedPokemon));
   }, [savedPokemon]);
 
   return (
-    <PokemonContext.Provider value={{ savedPokemon, savePokemon }}>
+    <PokemonContext.Provider value={{ savedPokemon, savePokemon, deletePokemon }}>
       {children}
     </PokemonContext.Provider>
   );
