@@ -3,6 +3,7 @@ import { GetPokemon } from '../api';
 import { usePokemonContext } from '../context/PokemonContext';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Filter from './filter';
 
 const typeColorMap = {
   normal: '#A8A77A',
@@ -34,6 +35,7 @@ const Card = ({ searchQuery }) => {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const { savedPokemon, savePokemon } = usePokemonContext();
   const [aliasInput, setAliasInput] = useState('');
+  const [selectedType, setSelectedType] = useState('all');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +43,7 @@ const Card = ({ searchQuery }) => {
         const result = await GetPokemon(300);
         setPokemonData(result);
         setVisiblePokemon(result.slice(0, visiblePokemonCount));
-        // console.log(result);
+        console.log(result);
       } catch (error) {
         console.error('Error fetching Pokémon data:', error);
       }
@@ -55,10 +57,16 @@ const Card = ({ searchQuery }) => {
       pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    
+    // Tambahkan filter berdasarkan selectedType
+    let filteredByType = filteredPokemon;
+    if (selectedType !== 'all') {
+      filteredByType = filteredByType.filter((pokemon) =>
+        pokemon.types.some((type) => type.type.name === selectedType)
+      );
+    }
 
-    setVisiblePokemon(filteredPokemon.slice(0, visiblePokemonCount));
-  }, [searchQuery, pokemonData, visiblePokemonCount]);
+    setVisiblePokemon(filteredByType.slice(0, visiblePokemonCount));
+  }, [searchQuery, pokemonData, visiblePokemonCount, selectedType]);
 
   const loadMorePokemon = () => {
     setVisiblePokemonCount((prevCount) => prevCount + 30);
@@ -70,7 +78,7 @@ const Card = ({ searchQuery }) => {
   };
 
   useEffect(() => {
-    // console.log('Saved Pokemon:', savedPokemon);
+    console.log('Saved Pokemon:', savedPokemon);
   }, [savedPokemon]);
 
   const handleSavePokemon = () => {
@@ -110,12 +118,15 @@ const Card = ({ searchQuery }) => {
 
   return (
     <div>
+      <div className='px-60'>
+      <Filter onChange={setSelectedType} />
+      </div>
       <div className='flex flex-wrap justify-center mx-20'>
         {visiblePokemon.map((content, i) => (
           <div key={i} className='card w-72 bg-base-100 shadow-xl m-4'>
             <figure>
               <img
-                src={content.sprites.other['official-artwork'].front_default}
+                src={content.sprites.other.dream_world.front_default}
                 className='w-44 h-44'
                 alt={content.name}
               />
@@ -174,9 +185,13 @@ const Card = ({ searchQuery }) => {
       </div>
       <div className='py-10'>
         {!searchQuery && (
-          <button className='btn flex justify-center mx-auto bg-red-500 hover:bg-red-700 text-white' onClick={loadMorePokemon}>
-            Load More
-          </button>
+          <button
+          className='btn flex justify-center mx-auto bg-red-500 hover:bg-red-700 text-white'
+          onClick={loadMorePokemon}
+          style={{ display: selectedType === 'all' ? 'block' : 'none' }}
+        >
+          Load More
+        </button>   
         )}
       </div>
       <ToastContainer

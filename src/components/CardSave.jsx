@@ -31,8 +31,8 @@ const typeColorMap = {
 const CardSave = () => {
   const { savedPokemon, deletePokemon } = usePokemonContext();
 
-  const handleDelete = (pokemonId) => {
-    deletePokemon(pokemonId);
+  const handleDelete = (pokemonAlias) => {
+    deletePokemon(pokemonAlias);
     toast.success('Pokemon Deleted!', {
       position: "top-right",
       autoClose: 2000,
@@ -83,7 +83,7 @@ const CardSave = () => {
               </ul>
               <button
                 className='btn bg-red-500 hover:bg-red-700 text-white'
-                onClick={() => handleDelete(content.id)}
+                onClick={() => handleDelete(content.alias)}
               >
                 Delete
               </button>
