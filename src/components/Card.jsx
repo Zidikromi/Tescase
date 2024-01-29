@@ -77,9 +77,7 @@ const Card = ({ searchQuery }) => {
     document.getElementById('my_modal_2').showModal();
   };
 
-  // useEffect(() => {
-  //   console.log('Saved Pokemon:', savedPokemon);
-  // }, [savedPokemon]);
+
 
   const handleSavePokemon = () => {
     const aliasValue = aliasInput.trim();
@@ -171,6 +169,7 @@ const Card = ({ searchQuery }) => {
                   <button
                     className='w-full bg-red-500 hover:bg-red-700 btn mt-5 text-white'
                     onClick={handleSavePokemon}
+                 
                   >
                     Save Pokemon
                   </button>
