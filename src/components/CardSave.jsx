@@ -31,7 +31,7 @@ const CardSave = () => {
 
   const handleDelete = (pokemonAlias) => {
     deletePokemon(pokemonAlias);
-    toast.success('Pokemon Deleted!', {
+    toast.success( `${pokemonAlias} Deleted!`, {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,

@@ -86,7 +86,7 @@ const Card = ({ searchQuery }) => {
       savePokemon(savedData);
       document.getElementById('my_modal_2').close();
       setAliasInput('');
-      toast.success('Pokemon Saved!', {
+      toast.success(`${aliasValue} Saved!`, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -98,7 +98,6 @@ const Card = ({ searchQuery }) => {
         transition: Bounce,
       });
     } else {
-      // console.error('Alias cannot be empty');
       toast.error('Alias cannot be empty', {
         position: "top-right",
         autoClose: 2000,
@@ -113,6 +112,7 @@ const Card = ({ searchQuery }) => {
       document.getElementById('my_modal_2').close();
     }
   };
+  
 
   return (
     <div>
