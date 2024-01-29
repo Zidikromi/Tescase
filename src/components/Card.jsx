@@ -43,7 +43,7 @@ const Card = ({ searchQuery }) => {
         const result = await GetPokemon(300);
         setPokemonData(result);
         setVisiblePokemon(result.slice(0, visiblePokemonCount));
-        console.log(result);
+        // console.log(result);
       } catch (error) {
         console.error('Error fetching Pokémon data:', error);
       }
@@ -57,7 +57,7 @@ const Card = ({ searchQuery }) => {
       pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Tambahkan filter berdasarkan selectedType
+
     let filteredByType = filteredPokemon;
     if (selectedType !== 'all') {
       filteredByType = filteredByType.filter((pokemon) =>
@@ -77,9 +77,9 @@ const Card = ({ searchQuery }) => {
     document.getElementById('my_modal_2').showModal();
   };
 
-  useEffect(() => {
-    console.log('Saved Pokemon:', savedPokemon);
-  }, [savedPokemon]);
+  // useEffect(() => {
+  //   console.log('Saved Pokemon:', savedPokemon);
+  // }, [savedPokemon]);
 
   const handleSavePokemon = () => {
     const aliasValue = aliasInput.trim();

@@ -6,12 +6,12 @@ function Search({ onSearch }) {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    console.log('Search Query:', event.target.value);
+    // console.log('Search Query:', event.target.value);
   };
   
   const handleSearch = () => {
     onSearch(searchQuery);
-    console.log('Performing Search:', searchQuery);
+    // console.log('Performing Search:', searchQuery);
   };
 
   return (
