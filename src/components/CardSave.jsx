@@ -53,15 +53,15 @@ const CardSave = () => {
       <div className='flex flex-wrap justify-center mx-20'>
         {savedPokemon.map((content, i) => (
           <div key={i} className="card w-72 bg-base-100 shadow-xl m-4">
-            {content.sprites && content.sprites.other && (
-              <figure>
+            
+              <figure className='mt-10'>
                 <img
                   src={content.sprites.other.dream_world.front_default}
                   className='w-44 h-44'
                   alt={content.name}
                 />
               </figure>
-            )}
+           
             <div className="card-body">
               <h2 className="card-title justify-center font-bold">
                 {content.alias}

@@ -122,7 +122,7 @@ const Card = ({ searchQuery }) => {
       <div className='flex flex-wrap justify-center mx-20'>
         {visiblePokemon.map((content, i) => (
           <div key={i} className='card w-72 bg-base-100 shadow-xl m-4'>
-            <figure>
+            <figure className='mt-10'>
               <img
                 src={content.sprites.other.dream_world.front_default}
                 className='w-44 h-44'
