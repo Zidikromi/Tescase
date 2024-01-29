@@ -3,8 +3,6 @@ import { usePokemonContext } from '../context/PokemonContext';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 const typeColorMap = {
     normal: '#A8A77A',
     fighting: '#C22E28',
