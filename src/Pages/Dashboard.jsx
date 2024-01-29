@@ -13,7 +13,7 @@ function Dashboard() {
   };
 
   return (
-    <>
+    <div className='w-fit'>
       <Navbar  />
       
       <Search onSearch={handleSearch} />
@@ -22,7 +22,7 @@ function Dashboard() {
         <Card searchQuery={searchQuery} />
         </PokemonProvider>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -9,12 +9,12 @@ const SavedPokemon = () => {
 
 
   return (
-    <>
+    <div className='w-full'>
       <Navbar />
       <PokemonProvider>
       <CardSave/>
     </PokemonProvider>
-    </>
+    </div>
   );
 };
 
