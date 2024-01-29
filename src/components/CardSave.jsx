@@ -58,7 +58,7 @@ const CardSave = () => {
             {content.sprites && content.sprites.other && (
               <figure>
                 <img
-                  src={content.sprites.other['official-artwork'].front_default}
+                  src={content.sprites.other.dream_world.front_default}
                   className='w-44 h-44'
                   alt={content.name}
                 />
