@@ -6,16 +6,14 @@ import { PokemonProvider } from "./context/PokemonContext";
 
 
 function App() {
- 
-  return (
-<PokemonProvider>
-      <Router>
-        
-          <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/Saved' element={<SavedPokemon />} />
-          </Routes>
 
+  return (
+    <PokemonProvider>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/Saved' element={<SavedPokemon />} />
+        </Routes>
       </Router>
     </PokemonProvider>
   );
