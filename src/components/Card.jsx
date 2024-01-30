@@ -77,6 +77,13 @@ const Card = ({ searchQuery }) => {
     document.getElementById('my_modal_2').showModal();
   };
 
+  const handleKeyDownInput = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSavePokemon();
+    }
+  };
+
 
 
   const handleSavePokemon = () => {
@@ -165,6 +172,7 @@ const Card = ({ searchQuery }) => {
                     className='input input-bordered w-full bg-gray-100 mt-2'
                     value={aliasInput}
                     onChange={(e) => setAliasInput(e.target.value)}
+                    onKeyDown={handleKeyDownInput}
                   />
                   <button
                     className='w-full bg-red-500 hover:bg-red-700 btn mt-5 text-white'
