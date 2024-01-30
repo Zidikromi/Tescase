@@ -178,7 +178,7 @@ const Card = ({ searchQuery }) => {
               >
                 Save
               </button>
-              <dialog id='my_modal_2' className='modal'>
+              <dialog id='my_modal_2' className='modal modal-bottom sm:modal-middle'>
                 <div className='modal-box'>
                   <h3 className='font-bold text-lg'>Give a nickname to Pokemon!</h3>
                   <input
