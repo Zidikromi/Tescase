@@ -89,21 +89,38 @@ const Card = ({ searchQuery }) => {
   const handleSavePokemon = () => {
     const aliasValue = aliasInput.trim();
     if (aliasValue) {
-      const savedData = { ...selectedPokemon, alias: aliasValue };
-      savePokemon(savedData);
-      document.getElementById('my_modal_2').close();
-      setAliasInput('');
-      toast.success(`${aliasValue} Saved!`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      const isAliasExists = savedPokemon.some((pokemon) => pokemon.alias === aliasValue);
+      if (isAliasExists) {
+        document.getElementById('my_modal_2').close();
+        setAliasInput('');
+        toast.error(`${aliasValue} already exists. Please choose a different alias.`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      } else {
+        const savedData = { ...selectedPokemon, alias: aliasValue };
+        savePokemon(savedData);
+        document.getElementById('my_modal_2').close();
+        setAliasInput('');
+        toast.success(`${aliasValue} Saved!`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
     } else {
       toast.error('Alias cannot be empty', {
         position: "top-right",
@@ -119,12 +136,12 @@ const Card = ({ searchQuery }) => {
       document.getElementById('my_modal_2').close();
     }
   };
-  
+
 
   return (
     <div>
       <div className='px-60'>
-      <Filter onChange={setSelectedType} />
+        <Filter onChange={setSelectedType} />
       </div>
       <div className='flex flex-wrap justify-center mx-20'>
         {visiblePokemon.map((content, i) => (
@@ -177,7 +194,7 @@ const Card = ({ searchQuery }) => {
                   <button
                     className='w-full bg-red-500 hover:bg-red-700 btn mt-5 text-white'
                     onClick={handleSavePokemon}
-                 
+
                   >
                     Save Pokemon
                   </button>
@@ -193,12 +210,12 @@ const Card = ({ searchQuery }) => {
       <div className='py-10'>
         {!searchQuery && (
           <button
-          className='btn flex justify-center mx-auto bg-red-500 hover:bg-red-700 text-white'
-          onClick={loadMorePokemon}
-          style={{ display: selectedType === 'all' ? 'block' : 'none' }}
-        >
-          Load More
-        </button>   
+            className='btn flex justify-center mx-auto bg-red-500 hover:bg-red-700 text-white'
+            onClick={loadMorePokemon}
+            style={{ display: selectedType === 'all' ? 'block' : 'none' }}
+          >
+            Load More
+          </button>
         )}
       </div>
       <ToastContainer
@@ -212,7 +229,7 @@ const Card = ({ searchQuery }) => {
         draggable
         pauseOnHover
         theme="dark"
-        transition:Bounce/>
+        transition:Bounce />
     </div>
   );
 };
