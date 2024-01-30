@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
     
       </div>
-      <div className="drawer-side z-10 ">
+      <div className="drawer-side z-10 h-full">
         <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 min-h-full bg-white shadow-md">
  

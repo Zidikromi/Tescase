@@ -13,7 +13,7 @@ function Dashboard() {
   };
 
   return (
-    <div className='w-fit'>
+    <div className='w-full'>
       <Navbar  />
       
       <Search onSearch={handleSearch} />
