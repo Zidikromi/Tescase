@@ -40,10 +40,9 @@ const Card = ({ searchQuery }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await GetPokemon(300);
+        const result = await GetPokemon(visiblePokemonCount);
         setPokemonData(result);
         setVisiblePokemon(result.slice(0, visiblePokemonCount));
-        // console.log(result);
       } catch (error) {
         console.error('Error fetching Pokémon data:', error);
       }

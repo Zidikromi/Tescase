@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
     <div className="drawer">
@@ -32,7 +37,7 @@ const Navbar = () => {
                 <Link
                   to="/"
                   className="text-black hover:text-red-700"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Home
                 </Link>
@@ -41,7 +46,7 @@ const Navbar = () => {
                 <Link
                   to="/saved"
                   className="text-black hover:text-red-700"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Saved
                 </Link>
@@ -59,7 +64,7 @@ const Navbar = () => {
                 <Link
                   to="/"
                   className="text-black hover:text-red-700"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Home
                 </Link>
@@ -68,7 +73,7 @@ const Navbar = () => {
                 <Link
                   to="/saved"
                   className="text-black hover:text-red-700"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Saved
                 </Link>

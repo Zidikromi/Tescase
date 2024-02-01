@@ -11,7 +11,6 @@ export const GetPokemon = async (initialCount = 30, offset = 0) => {
         return detailedPokemon.data;
       })
     );
-
     return pokemonData;
   } catch (error) {
     console.error('Error fetching Pokémon data:', error);
@@ -19,12 +18,15 @@ export const GetPokemon = async (initialCount = 30, offset = 0) => {
   }
 };
 
-
 export const GetTypes = async () => {
-
-    const TypeList = await axios.get(`${baseUrl}type`);
-    const results = TypeList.data.results
+  try {
+    const typeList = await axios.get(`${baseUrl}type`);
+    const results = typeList.data.results;
     return results;
+  } catch (error) {
+    console.error('Error fetching Pokemon types:', error);
+    throw error;
+  }
 };
 
 
