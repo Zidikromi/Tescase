@@ -10,7 +10,7 @@ const SavedPokemon = () => {
 
   return (
     <div className='w-full'>
-      <Navbar />
+      {/* <Navbar /> */}
       <PokemonProvider>
       <CardSave/>
     </PokemonProvider>

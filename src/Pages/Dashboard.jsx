@@ -14,7 +14,7 @@ function Dashboard() {
 
   return (
     <div className='w-full'>
-      <Navbar  />
+      {/* <Navbar  /> */}
       
       <Search onSearch={handleSearch} />
       <div className='mt-10'>
